@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ShieldCheck, Wrench, Truck, Clock, BadgeCheck, X } from "lucide-react";
-import StarField from "../components/StarField";
+import BlueprintGrid from "../components/BlueprintGrid";
 import { useLanguage } from "../context/LanguageContext";
 
 // Импортируем ваши загруженные картинки из папки assets
@@ -66,7 +66,7 @@ export default function About() {
 
   return (
     <div style={{ background: "#0a0c0e", color: "#eeece4", position: "relative", overflow: "hidden" }}>
-      <StarField />
+      <BlueprintGrid />
 
       {/* СЕКЦИЯ 1: О КОМПАНИИ */}
       <div style={{ maxWidth: 960, margin: "0 auto", position: "relative", zIndex: 1, padding: "clamp(70px,12vw,110px) 20px 30px" }}>
@@ -78,7 +78,7 @@ export default function About() {
         <h2 style={gradHead(["#ffffff", "#8a8a8a"])}>
           {t("about.heading") ? t("about.heading").split(" — ")[0] : ""}
         </h2>
-        <h2 style={gradHead(["#7fb8f5", "#2c6ab8"])}>
+        <h2 style={gradHead(["#ffd166", "#d99a1f"])}>
           — {t("about.heading") ? t("about.heading").split(" — ")[1] : ""}
         </h2>
 
@@ -103,7 +103,7 @@ export default function About() {
             <div key={index} style={{ background: "#0d1014", padding: "28px 22px" }}>
               <div style={{
                 fontFamily: "'Oswald', sans-serif", fontWeight: 700, fontSize: "1.7rem",
-                backgroundImage: "linear-gradient(180deg, #ffffff, #7fb8f5)",
+                backgroundImage: "linear-gradient(180deg, #ffd166, #d99a1f)",
                 WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent"
               }}>
                 {t(`about.facts.${index}.k`)}
@@ -133,7 +133,7 @@ export default function About() {
             <div key={index} style={{ borderLeft: "2px solid #4f8fe0", paddingLeft: 20 }}>
               <div style={{
                 fontFamily: "'Oswald', sans-serif", fontWeight: 700, fontSize: "1.6rem",
-                backgroundImage: "linear-gradient(180deg, #7fb8f5, #2c6ab8)",
+                backgroundImage: "linear-gradient(180deg, #ffd166, #d99a1f)",
                 WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent",
                 marginBottom: 6
               }}>

@@ -1,5 +1,5 @@
 import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react";
-import StarField from "../components/StarField";
+import BlueprintGrid from "../components/BlueprintGrid";
 import { InstagramIcon, LinkedinIcon, FacebookIcon } from "../components/icons";
 import { useLanguage } from "../context/LanguageContext";
 import { useState } from "react";
@@ -83,7 +83,7 @@ export default function Contacts() {
 
   return (
     <div style={{ background: "#060709", color: "#eeece4", minHeight: "100vh", position: "relative", overflow: "hidden" }}>
-      <StarField />
+      <BlueprintGrid />
 
       <style>{`
         input::placeholder {
@@ -124,7 +124,7 @@ export default function Contacts() {
           </span>
           <span style={{
             display: "inline-block",
-            backgroundImage: "linear-gradient(180deg, #7fb8f5 0%, #2c6ab8 100%)",
+            backgroundImage: "linear-gradient(180deg, #ffd166 0%, #d99a1f 100%)",
             WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent"
           }}>
             {t("contacts.eyebrow_title_2")}
@@ -226,7 +226,7 @@ export default function Contacts() {
           </span>
           <span style={{
             display: "inline-block",
-            backgroundImage: "linear-gradient(180deg, #7fb8f5 0%, #2c6ab8 100%)",
+            backgroundImage: "linear-gradient(180deg, #ffd166 0%, #d99a1f 100%)",
             WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent"
           }}>
             {t("contacts.eyebrow_title_4")}

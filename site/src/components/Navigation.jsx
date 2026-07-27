@@ -25,7 +25,7 @@ export default function Navigation({ page, setPage }) {
             <button key={id} onClick={() => setPage(id)} style={{
               padding: "9px 18px", borderRadius: 999, border: "none", cursor: "pointer",
               fontSize: "0.88rem", fontWeight: 600,
-              background: page === id ? "#4f8fe0" : "transparent",
+              background: page === id ? "#f5b942" : "transparent",
               color: page === id ? "#0d0f11" : "#eeece4",
               transition: "all 0.2s ease"
             }}>{label}</button>
@@ -62,7 +62,7 @@ export default function Navigation({ page, setPage }) {
               <button key={id} onClick={() => { setPage(id); setOpen(false); }} style={{
                 textAlign: "left", padding: "14px 16px", borderRadius: 10,
                 border: "none", cursor: "pointer", fontSize: "1rem",
-                background: page === id ? "#4f8fe0" : "transparent",
+                background: page === id ? "#f5b942" : "transparent",
                 color: page === id ? "#0d0f11" : "#eeece4", fontWeight: 600
               }}>{label}</button>
             ))}

@@ -4,7 +4,6 @@ import { ProductsProvider } from "./context/ProductsContext";
 import { ToastProvider } from "./context/ToastContext";
 import Intro from "./components/Intro";
 import Navigation from "./components/Navigation";
-import { supabase } from "./supabaseClient";
 import FloatingContacts from "./components/FloatingContacts";
 import ErrorBoundary from "./components/ErrorBoundary";
 import BackToTop from "./components/BackToTop";
@@ -15,8 +14,6 @@ import About from "./pages/About";
 import Contacts from "./pages/Contacts";
 import NotFound from "./pages/NotFound";
 
-// Код админки грузится отдельным чанком, только когда реально открыли /admin —
-// обычные посетители сайта его не скачивают.
 const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 const AdminPanel = lazy(() => import("./pages/AdminPanel"));
 
@@ -45,17 +42,8 @@ function Site() {
 }
 
 function Admin() {
-  const [authed, setAuthed] = useState(null); // null = проверяем сессию
+  const [authed, setAuthed] = useState(!!localStorage.getItem("admin_token"));
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => setAuthed(!!data.session));
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setAuthed(!!session);
-    });
-    return () => listener.subscription.unsubscribe();
-  }, []);
-
-  if (authed === null) return null;
   if (!authed) return (
     <Suspense fallback={null}>
       <AdminLogin onSuccess={() => setAuthed(true)} />
@@ -64,8 +52,8 @@ function Admin() {
   return (
     <Suspense fallback={null}>
       <AdminPanel
-        onLogout={async () => {
-          await supabase.auth.signOut();
+        onLogout={() => {
+          localStorage.removeItem("admin_token");
           setAuthed(false);
         }}
       />

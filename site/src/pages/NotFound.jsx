@@ -1,5 +1,5 @@
 import { useLanguage } from "../context/LanguageContext";
-import StarField from "../components/StarField";
+import BlueprintGrid from "../components/BlueprintGrid";
 
 export default function NotFound() {
   const { t } = useLanguage();
@@ -8,7 +8,7 @@ export default function NotFound() {
       minHeight: "100vh", background: "#0d0f11", color: "#eeece4", position: "relative",
       display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden"
     }}>
-      <StarField />
+      <BlueprintGrid />
       <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: 24 }}>
         <div style={{
           fontFamily: "'Oswald', sans-serif", fontWeight: 700, fontSize: "clamp(4rem, 14vw, 8rem)",

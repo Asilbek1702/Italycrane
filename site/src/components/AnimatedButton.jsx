@@ -27,6 +27,15 @@ export default function AnimatedButton({ children, onClick, variant = "light", s
         ? "0 10px 28px rgba(79,143,224,0.55)"
         : "0 4px 18px rgba(79,143,224,0.35)",
     },
+    yellow: {
+      background: hover
+        ? "linear-gradient(180deg, #ffd166 0%, #e0a72c 100%)"
+        : "linear-gradient(180deg, #f5b942 0%, #d99a1f 100%)",
+      color: "#0d0f11",
+      boxShadow: hover
+        ? "0 10px 28px rgba(245,185,66,0.55)"
+        : "0 4px 18px rgba(245,185,66,0.35)",
+    },
     outline: {
       background: hover ? "rgba(79,143,224,0.12)" : "transparent",
       color: "#4f8fe0",

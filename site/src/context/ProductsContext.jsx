@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { supabase } from "../supabaseClient";
+import { API_BASE_URL } from "../config";
 
 const ProductsContext = createContext(null);
 
@@ -11,48 +11,45 @@ export function ProductsProvider({ children }) {
   async function refresh() {
     setLoading(true);
     setError(null);
-    const { data, error } = await supabase
-      .from("products")
-      .select("*")
-      .order("id", { ascending: true });
-
-    if (error) {
-      console.error("Ошибка при получении товаров:", error.message);
-      setError(error.message);
-    } else {
-      setProducts(data || []);
+    try {
+      const res = await fetch(`${API_BASE_URL}/products/`);
+      if (!res.ok) throw new Error("Failed to fetch products");
+      setProducts(await res.json());
+    } catch (e) {
+      console.error("Ошибка при получении товаров:", e.message);
+      setError(e.message);
     }
     setLoading(false);
   }
 
-  useEffect(() => {
-    refresh();
-  }, []);
+  useEffect(() => { refresh(); }, []);
+
+  function authHeaders() {
+    const token = localStorage.getItem("admin_token");
+    return { "Content-Type": "application/json", Authorization: `Bearer ${token}` };
+  }
 
   async function addProduct(p) {
-    const { error } = await supabase.from("products").insert([p]);
-    if (error) {
-      console.error("Ошибка при добавлении товара:", error.message);
-      throw error;
-    }
+    const res = await fetch(`${API_BASE_URL}/products/`, {
+      method: "POST", headers: authHeaders(), body: JSON.stringify(p),
+    });
+    if (!res.ok) throw new Error("create failed");
     await refresh();
   }
 
   async function updateProduct(id, p) {
-    const { error } = await supabase.from("products").update(p).eq("id", id);
-    if (error) {
-      console.error("Ошибка при обновлении товара:", error.message);
-      throw error;
-    }
+    const res = await fetch(`${API_BASE_URL}/products/${id}`, {
+      method: "PUT", headers: authHeaders(), body: JSON.stringify(p),
+    });
+    if (!res.ok) throw new Error("update failed");
     await refresh();
   }
 
   async function deleteProduct(id) {
-    const { error } = await supabase.from("products").delete().eq("id", id);
-    if (error) {
-      console.error("Ошибка при удалении товара:", error.message);
-      throw error;
-    }
+    const res = await fetch(`${API_BASE_URL}/products/${id}`, {
+      method: "DELETE", headers: authHeaders(),
+    });
+    if (!res.ok) throw new Error("delete failed");
     await refresh();
   }
 

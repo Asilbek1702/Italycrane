@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { ChevronsRight, PackageSearch } from "lucide-react";
-import StarField from "../components/StarField";
+import BlueprintGrid from "../components/BlueprintGrid";
 import PdfModal from "../components/PdfModal";
 import Skeleton from "../components/Skeleton";
 import SuccessCheck from "../components/SuccessCheck";
 import { useLanguage } from "../context/LanguageContext";
 import { useProducts } from "../context/ProductsContext";
 import { useToast } from "../context/ToastContext";
-import { CATEGORIES, getCategory, optionLabel } from "../data/categories";
+import { getCategory, optionLabel } from "../data/categories";
 
 const QUOTE_EMAIL = "4b0bb1139cf12ba51b9816eb9ff90467";
 
@@ -15,14 +15,13 @@ export default function Catalog() {
   const { t, lang } = useLanguage();
   const { products, loading } = useProducts();
   const toast = useToast();
-  const [filter, setFilter] = useState("Все");
   const [selected, setSelected] = useState(null);
   const [pdfUrl, setPdfUrl] = useState(null);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [hoverBtn, setHoverBtn] = useState(null);
 
-  const shown = filter === "Все" ? products : products.filter((p) => p.category === filter);
+  const shown = products;
 
   async function submitQuote(e) {
     e.preventDefault();
@@ -53,7 +52,7 @@ export default function Catalog() {
 
   return (
     <div style={{ background: "#0d0f11", color: "#eeece4", padding: "90px 24px 60px", minHeight: "100vh", position: "relative", overflow: "hidden" }}>
-      <StarField />
+      <BlueprintGrid />
 
       <style>{`
         @media (max-width: 640px) {
@@ -101,17 +100,6 @@ export default function Catalog() {
         }}>
           {t("catalog.title")}
         </h2>
-
-        <div style={{ display: "flex", gap: 10, marginBottom: 44, flexWrap: "wrap" }}>
-          <button onClick={() => setFilter("Все")} style={filterPill(filter === "Все")}>
-            {t("catalog.all")}
-          </button>
-          {CATEGORIES.map((c) => (
-            <button key={c.id} onClick={() => setFilter(c.id)} style={filterPill(filter === c.id)}>
-              {c.label[lang]}
-            </button>
-          ))}
-        </div>
 
         {loading && (
           <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
@@ -214,10 +202,10 @@ export default function Catalog() {
                     <div className="catalog-actions" style={{ display: "flex", gap: 12, alignItems: "center" }}>
                       <button onClick={() => setSelected(p)} style={{
                         padding: "13px 24px",
-                        background: "linear-gradient(90deg, rgba(141, 182, 230, 0.9) 0%, rgba(107, 163, 236, 0.9) 100%)",
+                        background: "linear-gradient(90deg, rgba(245,185,66,0.9) 0%, rgba(217,154,31,0.9) 100%)",
                         border: "none", borderRadius: 8, color: "#0d0f11", cursor: "pointer",
                         fontSize: "0.9rem", fontWeight: 700,
-                        boxShadow: "0 4px 15px rgba(79, 143, 224, 0.25)", transition: "all 0.2s ease"
+                        boxShadow: "0 4px 15px rgba(245,185,66,0.25)",
                       }}>
                         {t("catalog.requestBtn")}
                       </button>
@@ -276,11 +264,7 @@ export default function Catalog() {
                 <input name="name" placeholder={t("quoteForm.name")} required style={inputStyle} />
                 <input name="phone" placeholder={t("quoteForm.phone")} required style={inputStyle} />
                 <input name="email" placeholder={t("quoteForm.email")} type="email" style={inputStyle} />
-                <select name="category" defaultValue={selected.category} style={inputStyle}>
-                  {CATEGORIES.map((c) => (
-                    <option key={c.id} value={c.id}>{c.label[lang]}</option>
-                  ))}
-                </select>
+                <input type="hidden" name="category" value="CRANE" />
                 <textarea name="description" placeholder={t("quoteForm.description")} rows={3} style={inputStyle} />
                 <button disabled={sending} style={{ padding: 12, background: "#4f8fe0", border: "none", borderRadius: 8, color: "#0d0f11", fontWeight: 600, cursor: sending ? "default" : "pointer", opacity: sending ? 0.6 : 1 }}>
                   {sending ? "…" : t("quoteForm.submit")}
@@ -296,13 +280,5 @@ export default function Catalog() {
     </div>
   );
 }
-
-const filterPill = (active) => ({
-  padding: "9px 18px", fontSize: "0.85rem", cursor: "pointer", borderRadius: 8,
-  border: "1px solid " + (active ? "transparent" : "rgba(238,236,228,0.25)"),
-  background: active ? "#a9c6ea" : "transparent",
-  color: active ? "#0d0f11" : "#eeece4", fontWeight: active ? 600 : 400,
-  transition: "all 0.2s ease"
-});
 
 const inputStyle = { padding: 11, background: "#0d0f11", border: "1px solid rgba(238,236,228,0.2)", color: "#eeece4", fontFamily: "inherit", borderRadius: 8 };

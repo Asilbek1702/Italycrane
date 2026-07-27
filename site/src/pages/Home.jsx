@@ -1,63 +1,57 @@
-import { ArrowUpRight } from "lucide-react";
-import StarField from "../components/StarField";
+// pages/Home.jsx
+import BlueprintGrid from "../components/BlueprintGrid";
 import AnimatedButton from "../components/AnimatedButton";
-import ParticleDotGrid from "../components/ParticleDotGrid";
+import StaticDiagonalTitle from "../components/StaticDiagonalTitle";
+import CraneShowcase from "../components/CraneShowcase";
 import { useLanguage } from "../context/LanguageContext";
+
+// Убедитесь, что эти файлы — PNG с прозрачным фоном!
+import crane1 from "../assets/cranes/crane1.png";
+import crane2 from "../assets/cranes/crane2.png";
+import crane3 from "../assets/cranes/crane3.png";
+
+const CRANE_IMAGES = [
+  { src: crane1, alt: "Crane 1" },
+  { src: crane2, alt: "Crane 2" },
+  { src: crane3, alt: "Crane 3" },
+];
 
 export default function Home({ setPage }) {
   const { t } = useLanguage();
   return (
     <div style={{
-      height: "100vh", position: "relative", overflow: "hidden",
+      minHeight: "100vh", position: "relative", overflow: "hidden",
       background: "#0d0f11", color: "#eeece4", fontFamily: "system-ui, sans-serif"
     }}>
-      <StarField />
+      <BlueprintGrid />
 
       <div style={{
-        position: "relative", zIndex: 1, height: "100%", boxSizing: "border-box",
-        display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-        textAlign: "center", padding: "70px 6vw 30px", maxWidth: 1100, margin: "0 auto",
-        overflow: "hidden"
+        position: "relative", zIndex: 1, minHeight: "100vh", boxSizing: "border-box",
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        padding: "90px 3vw 40px",
+        maxWidth: 1400, margin: "0 auto", gap: 20
       }}>
-        <ParticleDotGrid text="UZTRANSFORMATOR" height={230} />
-
-        <h1 style={{
-          fontFamily: "'Oswald', sans-serif", fontWeight: 700, textTransform: "uppercase",
-          fontSize: "clamp(2.6rem, 7vw, 5.2rem)", lineHeight: 1.02,
-          letterSpacing: "0.01em", margin: "36px 0 0"
-        }}>
-          <span style={{
-            display: "block",
-            backgroundImage: "linear-gradient(180deg, #ffffff 0%, #a8a8a8 100%)",
-            WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent"
+        <div style={{ textAlign: "left", flex: "0 1 480px" }}>
+          <StaticDiagonalTitle text="ITALYCRANE" />
+          <p style={{
+            display: "flex", gap: 10, alignItems: "flex-start", marginTop: 22,
+            maxWidth: 440, color: "#9fc3e8", fontSize: "1rem", lineHeight: 1.6
           }}>
-            {t("home.headingLine1")}
-          </span>
-          <span style={{
-            display: "block",
-            backgroundImage: "linear-gradient(180deg, #7fb8f5 0%, #2c6ab8 100%)",
-            WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent"
-          }}>
-            {t("home.headingLine2")}
-          </span>
-        </h1>
+            <span style={{ color: "#4f8fe0", marginTop: 2 }}>✦</span>
+            {t("home.subtitle")}
+          </p>
+          <div style={{ display: "flex", gap: 16, marginTop: 30, flexWrap: "wrap" }}>
+            <AnimatedButton variant="light" onClick={() => setPage("catalog")}>
+              {t("home.catalogBtn")}
+            </AnimatedButton>
+            <AnimatedButton variant="yellow" onClick={() => setPage("about")}>
+              {t("home.aboutBtn")}
+            </AnimatedButton>
+          </div>
+        </div>
 
-        <p style={{
-          display: "flex", gap: 10, alignItems: "flex-start", marginTop: 18,
-          maxWidth: 560, color: "#9fc3e8", fontSize: "1rem", lineHeight: 1.6,
-          justifyContent: "center", textAlign: "center"
-        }}>
-          <span style={{ color: "#4f8fe0", marginTop: 2 }}>✦</span>
-          {t("home.subtitle")}
-        </p>
-
-        <div style={{ display: "flex", gap: 16, marginTop: 30, flexWrap: "wrap", justifyContent: "center" }}>
-          <AnimatedButton variant="light" onClick={() => setPage("catalog")}>
-            {t("home.catalogBtn")}
-          </AnimatedButton>
-          <AnimatedButton variant="light" onClick={() => setPage("about")}>
-            {t("home.aboutBtn")} 
-          </AnimatedButton>
+        <div style={{ flex: "0 0 auto" }}>
+          <CraneShowcase images={CRANE_IMAGES} />
         </div>
       </div>
     </div>

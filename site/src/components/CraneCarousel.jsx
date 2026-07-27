@@ -28,7 +28,16 @@ export default function CraneCarousel({ size = 420 }) {
   };
 
   return (
-    <div style={{ position: "relative", width: size, height: size * 0.75, maxWidth: "60vw" }}>
+    <div 
+      style={{ 
+        position: "relative", 
+        width: size, 
+        height: size * 0.75,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      }}
+    >
       {IMAGES.map((src, i) => {
         const role = roleOf(i);
         const s = SLOTS[role];
@@ -38,15 +47,20 @@ export default function CraneCarousel({ size = 420 }) {
             src={src}
             alt="ITALYCRANE"
             style={{
-              position: "absolute", inset: 0, width: "100%", height: "100%",
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
               objectFit: "contain",
-              filter: role === "main"
-                ? "drop-shadow(0 20px 34px rgba(0,0,0,0.55))"
-                : "drop-shadow(0 10px 18px rgba(0,0,0,0.45)) brightness(0.7)",
+              filter:
+                role === "main"
+                  ? "drop-shadow(0 20px 34px rgba(0,0,0,0.55))"
+                  : "drop-shadow(0 10px 18px rgba(0,0,0,0.45)) brightness(0.7)",
               zIndex: s.z,
               opacity: s.opacity,
               transform: `translate(${s.x}%, ${s.y}%) scale(${s.scale})`,
-              transition: "transform 1.8s cubic-bezier(.4,0,.2,1), opacity 1.8s ease, filter 1.8s ease"
+              transition:
+                "transform 1.8s cubic-bezier(.4,0,.2,1), opacity 1.8s ease, filter 1.8s ease",
             }}
           />
         );

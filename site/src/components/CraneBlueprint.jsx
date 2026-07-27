@@ -4,37 +4,25 @@ export default function CraneBlueprint() {
   return (
     <div
       style={{
-        position: "fixed",
+        position: "absolute",
         inset: 0,
-        zIndex: 0,
         pointerEvents: "none",
         overflow: "hidden",
-
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        zIndex: 1, // На заднем плане
       }}
     >
       <img
         src={blueprint}
-        alt=""
+        alt="Blueprint"
         style={{
           position: "absolute",
-
-          left: "50%",
-          top: "50%",
+          left: "50%", // Ровно по центру экрана по горизонтали
+          top: "50%",  // Ровно по центру по вертикали
           transform: "translate(-50%, -50%)",
-
-          width: "90vw",
-          height: "90vh",
+          width: "1050px",
+          maxWidth: "85vw",
+          opacity: 0.28,
           objectFit: "contain",
-
-          opacity: 0.45,
-
-          maskImage:
-            "linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%)",
         }}
       />
     </div>

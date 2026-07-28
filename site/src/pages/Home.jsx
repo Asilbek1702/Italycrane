@@ -37,6 +37,41 @@ export default function Home({ setPage }) {
       >
         {/* Левая часть: Текст и кнопки у самого левого края */}
         <div style={{ zIndex: 3 }}>
+          
+          {/* НАДПИСЬ ITALYCRANE (Увеличена в 2 раза, отчётливый отступ снизу) */}
+          <div
+            style={{
+              fontFamily: "'Oswald', sans-serif",
+              fontWeight: 800,
+              fontSize: "clamp(3.5rem, 5.5vw, 6rem)", // Увеличено ~в 2 раза
+              letterSpacing: "4px",
+              textTransform: "uppercase",
+              marginBottom: "28px", // Чёткий и заметный отступ от заголовка снизу
+              lineHeight: 1,
+            }}
+          >
+            {/* Первая часть: ITALY (Белый градиент) */}
+            <span
+              style={{
+                background: "linear-gradient(180deg, #ffffff, #bfbfbf)",
+                WebkitBackgroundClip: "text",
+                color: "transparent",
+              }}
+            >
+              ITALY
+            </span>
+            {/* Вторая часть: CRANE (Жёлтый градиент) */}
+            <span
+              style={{
+                background: "linear-gradient(180deg, #ffd166, #d99a1f)",
+                WebkitBackgroundClip: "text",
+                color: "transparent",
+              }}
+            >
+              CRANE
+            </span>
+          </div>
+
           <h1
             style={{
               fontFamily: "'Oswald', sans-serif",

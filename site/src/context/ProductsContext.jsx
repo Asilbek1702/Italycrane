@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { API_BASE_URL } from "../config";
+import { authHeaders } from "../adminAuth";
 
 const ProductsContext = createContext(null);
 
@@ -13,43 +14,58 @@ export function ProductsProvider({ children }) {
     setError(null);
     try {
       const res = await fetch(`${API_BASE_URL}/products/`);
-      if (!res.ok) throw new Error("Failed to fetch products");
-      setProducts(await res.json());
-    } catch (e) {
-      console.error("Ошибка при получении товаров:", e.message);
-      setError(e.message);
+      if (!res.ok) throw new Error("Не удалось получить список товаров");
+      const data = await res.json();
+      setProducts(data || []);
+    } catch (err) {
+      console.error("Ошибка при получении товаров:", err.message);
+      setError(err.message);
     }
     setLoading(false);
   }
 
-  useEffect(() => { refresh(); }, []);
-
-  function authHeaders() {
-    const token = localStorage.getItem("admin_token");
-    return { "Content-Type": "application/json", Authorization: `Bearer ${token}` };
-  }
+  useEffect(() => {
+    refresh();
+  }, []);
 
   async function addProduct(p) {
     const res = await fetch(`${API_BASE_URL}/products/`, {
-      method: "POST", headers: authHeaders(), body: JSON.stringify(p),
+      method: "POST",
+      headers: { "Content-Type": "application/json", ...authHeaders() },
+      body: JSON.stringify(p),
     });
-    if (!res.ok) throw new Error("create failed");
+    if (!res.ok) {
+      const err = new Error("Не удалось добавить товар");
+      console.error(err.message);
+      throw err;
+    }
     await refresh();
   }
 
   async function updateProduct(id, p) {
     const res = await fetch(`${API_BASE_URL}/products/${id}`, {
-      method: "PUT", headers: authHeaders(), body: JSON.stringify(p),
+      method: "PUT",
+      headers: { "Content-Type": "application/json", ...authHeaders() },
+      body: JSON.stringify(p),
     });
-    if (!res.ok) throw new Error("update failed");
+    if (!res.ok) {
+      const err = new Error("Не удалось обновить товар");
+      console.error(err.message);
+      throw err;
+    }
     await refresh();
   }
 
   async function deleteProduct(id) {
     const res = await fetch(`${API_BASE_URL}/products/${id}`, {
-      method: "DELETE", headers: authHeaders(),
+      method: "DELETE",
+      headers: { ...authHeaders() },
     });
-    if (!res.ok) throw new Error("delete failed");
+    if (!res.ok) {
+      const err = new Error("Не удалось удалить товар");
+      console.error(err.message);
+      throw err;
+    }
     await refresh();
   }
 

@@ -30,10 +30,10 @@ export default function Intro({ onDone }) {
         }
       `}</style>
       <svg width="280" height="140" viewBox="0 0 280 140">
-        <polyline
-          points="10,70 70,70 90,20 120,120 150,20 180,120 200,70 270,70"
-          fill="none" stroke="#4f8fe0" strokeWidth="2.5"
-          strokeDasharray="600" strokeDashoffset="600"
+        <path
+          d="M50,130 L50,20 M50,20 L260,20 M50,20 L18,36 M225,20 L225,72 M215,72 L235,72"
+          fill="none" stroke="#f0b429" strokeWidth="2.5" strokeLinecap="round"
+          strokeDasharray="430" strokeDashoffset="430"
           style={{ animation: "drawLine 1.3s ease forwards" }}
         />
       </svg>
@@ -43,7 +43,7 @@ export default function Intro({ onDone }) {
         whiteSpace: "nowrap", transform: "skewX(-10deg)",
         opacity: 0, animation: "riseFade 0.5s ease 1.1s forwards"
       }}>
-        UZTRANSFORMATOR
+        ITALYCRANE
       </div>
     </div>
   );

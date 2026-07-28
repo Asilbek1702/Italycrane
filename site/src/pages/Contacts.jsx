@@ -1,5 +1,5 @@
 import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react";
-import BlueprintGrid from "../components/BlueprintGrid";
+import CraneBlueprint from "../components/CraneBlueprint";
 import { InstagramIcon, LinkedinIcon, FacebookIcon } from "../components/icons";
 import { useLanguage } from "../context/LanguageContext";
 import { useState } from "react";
@@ -7,7 +7,7 @@ import { useState } from "react";
 const QUOTE_EMAIL = "4b0bb1139cf12ba51b9816eb9ff90467";
 
 const PHONES = ["+998 88 599 99 99", "+998 77 666 66 66"];
-const EMAILS = ["info@uztransformator.com", "sales@uztransformator.com"];
+const EMAILS = ["info@italycrane.com", "sales@italycrane.com"];
 const ADDRESS_LINE1 = "Ташкент, Бектемирский район";
 const ADDRESS_LINE2 = "сход граждан Олтинтопган";
 const MAP_LINK = "https://maps.app.goo.gl/5vobyWXhDA4sLWyw6";
@@ -35,7 +35,7 @@ export default function Contacts() {
     boxSizing: "border-box",
     padding: "16px 24px",
     borderRadius: "14px",
-    border: focusedField === id ? "1px solid rgba(127, 184, 245, 0.6)" : "1px solid rgba(255, 255, 255, 0.22)",
+    border: focusedField === id ? "1px solid rgba(255, 216, 92, 0.6)" : "1px solid rgba(255, 255, 255, 0.22)",
     background: "linear-gradient(135deg, rgba(20, 26, 35, 0.45) 0%, rgba(10, 12, 16, 0.55) 100%)",
     backdropFilter: "blur(10px)",
     color: "#ffffff",
@@ -43,7 +43,7 @@ export default function Contacts() {
     fontSize: "0.95rem",
     outline: "none",
     boxShadow: focusedField === id
-      ? "0 0 15px rgba(79, 143, 224, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.1)"
+      ? "0 0 15px rgba(240, 180, 41, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.1)"
       : "inset 0 1px 1px rgba(255, 255, 255, 0.08)",
     transition: "all 0.25s ease"
   });
@@ -83,12 +83,12 @@ export default function Contacts() {
 
   return (
     <div style={{ background: "#060709", color: "#eeece4", minHeight: "100vh", position: "relative", overflow: "hidden" }}>
-      <BlueprintGrid />
+      <CraneBlueprint />
 
       <style>{`
         input::placeholder {
           color: rgba(255, 255, 255, 0.75) !important;
-          text-shadow: 0 0 8px rgba(79, 143, 224, 0.3);
+          text-shadow: 0 0 8px rgba(240, 180, 41, 0.3);
           font-weight: 500;
         }
         .contacts-form { width: 100%; max-width: 700px; box-sizing: border-box; }
@@ -100,15 +100,15 @@ export default function Contacts() {
       <div style={{ position: "absolute", top: 32, left: 32, zIndex: 2 }}>
         <span style={{
           fontFamily: "'Oswald', sans-serif", fontSize: "0.95rem",
-          letterSpacing: "0.12em", color: "#8fc0ff",
-          textShadow: "0 0 12px rgba(120,180,255,0.55)"
+          letterSpacing: "0.12em", color: "#ffd98a",
+          textShadow: "0 0 12px rgba(255,210,120,0.55)"
         }}>
-          UZTRANSFORMATOR
+          ITALYCRANE
         </span>
       </div>
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: 900, margin: "0 auto", padding: "150px 24px 60px", boxSizing: "border-box" }}>
-        <p style={{ fontFamily: "monospace", fontSize: "0.78rem", letterSpacing: "0.18em", color: "#4f8fe0", marginBottom: 18 }}>
+        <p style={{ fontFamily: "monospace", fontSize: "0.78rem", letterSpacing: "0.18em", color: "#f0b429", marginBottom: 18 }}>
           {t("contacts.eyebrow")}
         </p>
         <h2 style={{
@@ -124,7 +124,7 @@ export default function Contacts() {
           </span>
           <span style={{
             display: "inline-block",
-            backgroundImage: "linear-gradient(180deg, #ffd166 0%, #d99a1f 100%)",
+            backgroundImage: "linear-gradient(180deg, #ffd85c 0%, #b8860b 100%)",
             WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent"
           }}>
             {t("contacts.eyebrow_title_2")}
@@ -132,7 +132,7 @@ export default function Contacts() {
         </h2>
 
         {sent ? (
-          <p style={{ color: "#4f8fe0", fontSize: "1rem", marginTop: 40 }}>{t("contacts.sent")}</p>
+          <p style={{ color: "#f0b429", fontSize: "1rem", marginTop: 40 }}>{t("contacts.sent")}</p>
         ) : (
           <form onSubmit={submitContact} className="contacts-form" style={{ display: "grid", gap: 16 }}>
             <input
@@ -199,10 +199,10 @@ export default function Contacts() {
                 gap: 10,
                 border: "1px solid rgba(255,255,255,0.08)",
                 background: hoverBtn
-                  ? "linear-gradient(135deg, rgba(127, 184, 245, 0.4) 0%, rgba(44, 106, 184, 0.5) 100%)"
-                  : "linear-gradient(135deg, rgba(44, 106, 184, 0.35) 0%, rgba(20, 40, 70, 0.45) 100%)",
+                  ? "linear-gradient(135deg, rgba(255, 216, 92, 0.4) 0%, rgba(184, 134, 11, 0.5) 100%)"
+                  : "linear-gradient(135deg, rgba(184, 134, 11, 0.35) 0%, rgba(60, 46, 10, 0.45) 100%)",
                 color: "#ffffff",
-                boxShadow: hoverBtn ? "0 8px 24px rgba(79, 143, 224, 0.25)" : "none",
+                boxShadow: hoverBtn ? "0 8px 24px rgba(240, 180, 41, 0.25)" : "none",
                 transform: hoverBtn ? "translateY(-2px)" : "translateY(0)",
                 opacity: sending ? 0.6 : 1,
                 transition: "all 0.25s ease"
@@ -226,7 +226,7 @@ export default function Contacts() {
           </span>
           <span style={{
             display: "inline-block",
-            backgroundImage: "linear-gradient(180deg, #ffd166 0%, #d99a1f 100%)",
+            backgroundImage: "linear-gradient(180deg, #ffd85c 0%, #b8860b 100%)",
             WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent"
           }}>
             {t("contacts.eyebrow_title_4")}
@@ -248,8 +248,8 @@ export default function Contacts() {
               transition: "all 0.2s ease"
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "rgba(79, 143, 224, 0.25)";
-              e.currentTarget.style.borderColor = "rgba(127, 184, 245, 0.4)";
+              e.currentTarget.style.background = "rgba(240, 180, 41, 0.25)";
+              e.currentTarget.style.borderColor = "rgba(255, 216, 92, 0.4)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)";
@@ -262,8 +262,8 @@ export default function Contacts() {
           {comingSoonMsg && (
             <div style={{
               position: "absolute", top: -38, left: 0,
-              background: "#16191d", border: "1px solid rgba(79,143,224,0.4)",
-              color: "#7fb8f5", fontSize: "0.8rem", padding: "6px 12px",
+              background: "#16191d", border: "1px solid rgba(240,180,41,0.4)",
+              color: "#ffd85c", fontSize: "0.8rem", padding: "6px 12px",
               borderRadius: 8, whiteSpace: "nowrap"
             }}>
               {t("contacts.comingSoon")}
@@ -276,11 +276,11 @@ export default function Contacts() {
           marginTop: 60, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 40
         }}>
           <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-            <Phone size={20} color="#4f8fe0" style={{ marginTop: 4 }} />
+            <Phone size={20} color="#f0b429" style={{ marginTop: 4 }} />
             <div style={{ display: "grid", gap: 6 }}>
               {PHONES.map((num, i) => (
                 <a key={i} href={`tel:${num.replace(/\s/g, "")}`} style={{
-                  color: "#7fb8f5", fontFamily: "'Oswald', sans-serif", fontSize: "1.2rem", letterSpacing: "0.02em", textDecoration: "none"
+                  color: "#ffd85c", fontFamily: "'Oswald', sans-serif", fontSize: "1.2rem", letterSpacing: "0.02em", textDecoration: "none"
                 }}>{num}</a>
               ))}
             </div>
@@ -289,12 +289,12 @@ export default function Contacts() {
           <div style={{ display: "grid", gap: 12, textAlign: "left" }}>
             {EMAILS.map((mail, i) => (
               <div key={i} style={{ display: "flex", gap: 10, alignItems: "center" }}>
-                <Mail size={16} color="#4f8fe0" />
+                <Mail size={16} color="#f0b429" />
                 <a href={`mailto:${mail}`} style={{ color: "#eeece4", fontSize: "0.95rem", textDecoration: "none" }}>{mail}</a>
               </div>
             ))}
             <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-              <MapPin size={16} color="#4f8fe0" style={{ marginTop: 3 }} />
+              <MapPin size={16} color="#f0b429" style={{ marginTop: 3 }} />
               <a href={MAP_LINK} target="_blank" rel="noreferrer" style={{ color: "#eeece4", fontSize: "0.95rem", lineHeight: 1.5, textDecoration: "none" }}>
                 {ADDRESS_LINE1}<br />{ADDRESS_LINE2}
               </a>
@@ -312,7 +312,7 @@ export default function Contacts() {
             boxShadow: "0 20px 50px rgba(0,0,0,0.4)"
           }}>
             <iframe
-              title="Uztransformator — карта"
+              title="Italycrane — карта"
               src={MAP_EMBED_SRC}
               width="100%"
               height="100%"
@@ -323,7 +323,7 @@ export default function Contacts() {
           </div>
           <a href={MAP_LINK} target="_blank" rel="noreferrer" style={{
             display: "inline-flex", alignItems: "center", gap: 8, marginTop: 14,
-            color: "#7fb8f5", fontSize: "0.85rem", textDecoration: "none"
+            color: "#ffd85c", fontSize: "0.85rem", textDecoration: "none"
           }}>
             <MapPin size={14} /> {ADDRESS_LINE1}, {ADDRESS_LINE2}
           </a>

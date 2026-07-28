@@ -12,34 +12,25 @@ export default function AnimatedButton({ children, onClick, variant = "light", s
 
   const variants = {
     light: {
-      background: "linear-gradient(180deg, #f7f6f2 0%, #c9d6e3 100%)",
+      background: "linear-gradient(180deg, #f7f6f2 0%, #e3d6a3 100%)",
       color: "#0d0f11",
       boxShadow: hover
-        ? "0 10px 28px rgba(140,180,230,0.45)"
-        : "0 4px 20px rgba(140,180,230,0.25)",
+        ? "0 10px 28px rgba(230,180,60,0.45)"
+        : "0 4px 20px rgba(230,180,60,0.25)",
     },
     blue: {
       background: hover
-        ? "linear-gradient(180deg, #6ba3ec 0%, #3a6fc4 100%)"
-        : "linear-gradient(180deg, #4f8fe0 0%, #2c6ab8 100%)",
-      color: "#fff",
-      boxShadow: hover
-        ? "0 10px 28px rgba(79,143,224,0.55)"
-        : "0 4px 18px rgba(79,143,224,0.35)",
-    },
-    yellow: {
-      background: hover
-        ? "linear-gradient(180deg, #ffd166 0%, #e0a72c 100%)"
-        : "linear-gradient(180deg, #f5b942 0%, #d99a1f 100%)",
+        ? "linear-gradient(180deg, #f7c948 0%, #c9960b 100%)"
+        : "linear-gradient(180deg, #f0b429 0%, #b8860b 100%)",
       color: "#0d0f11",
       boxShadow: hover
-        ? "0 10px 28px rgba(245,185,66,0.55)"
-        : "0 4px 18px rgba(245,185,66,0.35)",
+        ? "0 10px 28px rgba(240,180,41,0.55)"
+        : "0 4px 18px rgba(240,180,41,0.35)",
     },
     outline: {
-      background: hover ? "rgba(79,143,224,0.12)" : "transparent",
-      color: "#4f8fe0",
-      border: "1px solid #4f8fe0",
+      background: hover ? "rgba(240,180,41,0.12)" : "transparent",
+      color: "#f0b429",
+      border: "1px solid #f0b429",
     },
   };
 

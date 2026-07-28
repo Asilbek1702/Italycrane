@@ -158,7 +158,7 @@ export default function AdminPanel({ onLogout }) {
         <h2 style={{ fontFamily: "Georgia, serif", fontSize: "1.5rem" }}>{t("admin.panelTitle")}</h2>
         <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
           <LanguageSwitcher />
-          <a href="/" style={{ color: "#4f8fe0", fontSize: "0.85rem" }}>{t("admin.backToSite")}</a>
+          <a href="/" style={{ color: "#f0b429", fontSize: "0.85rem" }}>{t("admin.backToSite")}</a>
           <button onClick={onLogout} style={{
             background: "transparent", border: "1px solid rgba(238,236,228,0.3)",
             color: "#eeece4", padding: "8px 14px", cursor: "pointer", fontSize: "0.85rem"
@@ -168,7 +168,7 @@ export default function AdminPanel({ onLogout }) {
 
       {!showForm && (
         <button onClick={startAdd} style={{
-          padding: "12px 20px", background: "#4f8fe0", border: "none",
+          padding: "12px 20px", background: "#f0b429", border: "none",
           color: "#0d0f11", fontWeight: 600, cursor: "pointer", marginBottom: 28
         }}>{t("admin.addProduct")}</button>
       )}
@@ -192,7 +192,7 @@ export default function AdminPanel({ onLogout }) {
 
           <div style={{
             display: "flex", gap: 10, alignItems: "center", background: "#0d0f11",
-            border: "1px solid rgba(79,143,224,0.3)", borderRadius: 8, padding: "10px 12px"
+            border: "1px solid rgba(240,180,41,0.3)", borderRadius: 8, padding: "10px 12px"
           }}>
             <span style={{ fontSize: "0.78rem", color: "rgba(238,236,228,0.6)" }}>{t("admin.sourceLang")}</span>
             <select value={form.sourceLang} onChange={(e) => setForm((f) => ({ ...f, sourceLang: e.target.value }))} style={{ ...inputStyle, padding: 6, width: 90 }}>
@@ -201,7 +201,7 @@ export default function AdminPanel({ onLogout }) {
               <option value="en">EN</option>
             </select>
             <button type="button" onClick={autoTranslate} disabled={translating} style={{
-              marginLeft: "auto", padding: "8px 14px", background: "#4f8fe0", border: "none",
+              marginLeft: "auto", padding: "8px 14px", background: "#f0b429", border: "none",
               borderRadius: 6, color: "#0d0f11", fontWeight: 600, cursor: translating ? "default" : "pointer",
               fontSize: "0.8rem", opacity: translating ? 0.6 : 1
             }}>{translating ? "…" : t("admin.autoTranslate")}</button>
@@ -260,10 +260,10 @@ export default function AdminPanel({ onLogout }) {
               setForm((f) => ({ ...f, pdf: dataUrl }));
             }
           }} style={inputStyle} />
-          {form.pdf && <span style={{ fontSize: "0.8rem", color: "#4f8fe0" }}>PDF ✓</span>}
+          {form.pdf && <span style={{ fontSize: "0.8rem", color: "#f0b429" }}>PDF ✓</span>}
 
           <div style={{ display: "flex", gap: 10, marginTop: 8 }}>
-            <button style={{ padding: 12, background: "#4f8fe0", border: "none", color: "#0d0f11", fontWeight: 600, cursor: "pointer", flex: 1 }}>
+            <button style={{ padding: 12, background: "#f0b429", border: "none", color: "#0d0f11", fontWeight: 600, cursor: "pointer", flex: 1 }}>
               {t("admin.save")}
             </button>
             <button type="button" onClick={() => setShowForm(false)} style={{

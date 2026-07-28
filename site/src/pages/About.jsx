@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ShieldCheck, Wrench, Truck, Clock, BadgeCheck, X } from "lucide-react";
-import BlueprintGrid from "../components/BlueprintGrid";
+import CraneBlueprint from "../components/CraneBlueprint";
 import { useLanguage } from "../context/LanguageContext";
 
 // Импортируем ваши загруженные картинки из папки assets
@@ -66,11 +66,11 @@ export default function About() {
 
   return (
     <div style={{ background: "#0a0c0e", color: "#eeece4", position: "relative", overflow: "hidden" }}>
-      <BlueprintGrid />
+      <CraneBlueprint />
 
       {/* СЕКЦИЯ 1: О КОМПАНИИ */}
       <div style={{ maxWidth: 960, margin: "0 auto", position: "relative", zIndex: 1, padding: "clamp(70px,12vw,110px) 20px 30px" }}>
-        <p style={{ fontFamily: "monospace", fontSize: "0.78rem", letterSpacing: "0.18em", color: "#4f8fe0", marginBottom: 18 }}>
+        <p style={{ fontFamily: "monospace", fontSize: "0.78rem", letterSpacing: "0.18em", color: "#f0b429", marginBottom: 18 }}>
           {t("about.eyebrow")}
         </p>
 
@@ -78,18 +78,18 @@ export default function About() {
         <h2 style={gradHead(["#ffffff", "#8a8a8a"])}>
           {t("about.heading") ? t("about.heading").split(" — ")[0] : ""}
         </h2>
-        <h2 style={gradHead(["#ffd166", "#d99a1f"])}>
+        <h2 style={gradHead(["#ffd85c", "#b8860b"])}>
           — {t("about.heading") ? t("about.heading").split(" — ")[1] : ""}
         </h2>
 
-        <p style={{ display: "flex", gap: 10, marginTop: 26, maxWidth: 620, color: "#9fc3e8", lineHeight: 1.7 }}>
-          <span style={{ color: "#4f8fe0" }}>✦</span>
+        <p style={{ display: "flex", gap: 10, marginTop: 26, maxWidth: 620, color: "#f5d98a", lineHeight: 1.7 }}>
+          <span style={{ color: "#f0b429" }}>✦</span>
           {t("about.intro")}
         </p>
 
         {/* Миссия компании */}
         <p style={{ display: "flex", gap: 10, marginTop: 18, maxWidth: 620, color: "rgba(238,236,228,0.75)", lineHeight: 1.7 }}>
-          <span style={{ color: "#4f8fe0" }}>✦</span>
+          <span style={{ color: "#f0b429" }}>✦</span>
           {t("about.missionText")}
         </p>
 
@@ -103,7 +103,7 @@ export default function About() {
             <div key={index} style={{ background: "#0d1014", padding: "28px 22px" }}>
               <div style={{
                 fontFamily: "'Oswald', sans-serif", fontWeight: 700, fontSize: "1.7rem",
-                backgroundImage: "linear-gradient(180deg, #ffd166, #d99a1f)",
+                backgroundImage: "linear-gradient(180deg, #ffffff, #ffd85c)",
                 WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent"
               }}>
                 {t(`about.facts.${index}.k`)}
@@ -115,25 +115,25 @@ export default function About() {
           ))}
         </div>
 
-        <p style={{ display: "flex", gap: 10, marginTop: 40, color: "#9fc3e8", fontSize: "0.95rem" }}>
-          <span style={{ color: "#4f8fe0" }}>✦</span>
+        <p style={{ display: "flex", gap: 10, marginTop: 40, color: "#f5d98a", fontSize: "0.95rem" }}>
+          <span style={{ color: "#f0b429" }}>✦</span>
           {t("about.quote")}
         </p>
       </div>
 
       {/* СЕКЦИЯ 2: ИСТОРИЯ (TIMELINE) */}
       <div style={{ maxWidth: 960, margin: "0 auto", position: "relative", zIndex: 1, padding: "70px 32px" }}>
-        <p style={{ fontFamily: "monospace", fontSize: "0.78rem", letterSpacing: "0.18em", color: "#4f8fe0", marginBottom: 18 }}>
+        <p style={{ fontFamily: "monospace", fontSize: "0.78rem", letterSpacing: "0.18em", color: "#f0b429", marginBottom: 18 }}>
           {t("about.pathEyebrow")}
         </p>
         <h3 style={gradHead(["#ffffff", "#8a8a8a"])}>{t("about.pathTitle")}</h3>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "40px 48px", marginTop: 48 }}>
           {[0, 1, 2, 3, 4].map((index) => (
-            <div key={index} style={{ borderLeft: "2px solid #4f8fe0", paddingLeft: 20 }}>
+            <div key={index} style={{ borderLeft: "2px solid #f0b429", paddingLeft: 20 }}>
               <div style={{
                 fontFamily: "'Oswald', sans-serif", fontWeight: 700, fontSize: "1.6rem",
-                backgroundImage: "linear-gradient(180deg, #ffd166, #d99a1f)",
+                backgroundImage: "linear-gradient(180deg, #ffd85c, #b8860b)",
                 WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent",
                 marginBottom: 6
               }}>
@@ -150,7 +150,7 @@ export default function About() {
 
       {/* СЕКЦИЯ 3: ПРИНЦИПЫ РАБОТЫ (С КАРТИНКАМИ ИЗ ДИЗАЙНА) */}
       <div style={{ maxWidth: 960, margin: "0 auto", position: "relative", zIndex: 1, padding: "20px 32px 100px" }}>
-        <p style={{ fontFamily: "monospace", fontSize: "0.78rem", letterSpacing: "0.18em", color: "#4f8fe0", marginBottom: 18 }}>
+        <p style={{ fontFamily: "monospace", fontSize: "0.78rem", letterSpacing: "0.18em", color: "#f0b429", marginBottom: 18 }}>
           {t("about.principlesEyebrow")}
         </p>
         <h3 style={gradHead(["#ffffff", "#8a8a8a"])}>{t("about.principlesTitle")}</h3>
@@ -171,7 +171,7 @@ export default function About() {
               <div style={{
                 position: "absolute",
                 top: 0, left: 0, right: 0, bottom: 0,
-                backgroundImage: `linear-gradient(180deg, rgba(10, 15, 24, 0.3) 0%, rgba(10, 15, 24, 0.85) 100%), url(${v.bgImage})`,
+                backgroundImage: `linear-gradient(180deg, rgba(24, 18, 6, 0.3) 0%, rgba(24, 18, 6, 0.85) 100%), url(${v.bgImage})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 zIndex: 0,
@@ -181,12 +181,12 @@ export default function About() {
               <div style={{ position: "relative", zIndex: 1 }}>
                 <div style={{
                   width: 40, height: 40, borderRadius: 10,
-                  background: "rgba(79, 143, 224, 0.15)",
+                  background: "rgba(240, 180, 41, 0.15)",
                   backdropFilter: "blur(6px)",
-                  border: "1px solid rgba(79, 143, 224, 0.35)",
+                  border: "1px solid rgba(240, 180, 41, 0.35)",
                   display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14
                 }}>
-                  <v.icon size={20} color="#4f8fe0" />
+                  <v.icon size={20} color="#f0b429" />
                 </div>
                 <div style={{ fontWeight: 600, marginBottom: 6, color: "#ffffff" }}>{v.t}</div>
                 <div style={{ color: "rgba(238,236,228,0.7)", fontSize: "0.88rem", lineHeight: 1.5 }}>{v.d}</div>
@@ -198,7 +198,7 @@ export default function About() {
 
       {/* СЕКЦИЯ 4: СЕРТИФИКАЦИЯ */}
       <div style={{ maxWidth: 960, margin: "0 auto", position: "relative", zIndex: 1, padding: "0 32px 80px" }}>
-        <p style={{ fontFamily: "monospace", fontSize: "0.78rem", letterSpacing: "0.18em", color: "#4f8fe0", marginBottom: 18 }}>
+        <p style={{ fontFamily: "monospace", fontSize: "0.78rem", letterSpacing: "0.18em", color: "#f0b429", marginBottom: 18 }}>
           {t("about.certEyebrow")}
         </p>
         <h3 style={gradHead(["#ffffff", "#8a8a8a"])}>{t("about.certTitle")}</h3>
@@ -210,10 +210,10 @@ export default function About() {
         }}>
           <div style={{
             width: 44, height: 44, borderRadius: 10, flexShrink: 0,
-            background: "rgba(79, 143, 224, 0.15)", border: "1px solid rgba(79, 143, 224, 0.35)",
+            background: "rgba(240, 180, 41, 0.15)", border: "1px solid rgba(240, 180, 41, 0.35)",
             display: "flex", alignItems: "center", justifyContent: "center"
           }}>
-            <BadgeCheck size={22} color="#4f8fe0" />
+            <BadgeCheck size={22} color="#f0b429" />
           </div>
           <p style={{ margin: 0, color: "rgba(238,236,228,0.75)", lineHeight: 1.7, fontSize: "0.95rem" }}>
             {t("about.certText")}
@@ -251,12 +251,12 @@ export default function About() {
 
       {/* СЕКЦИЯ 5: ПАРТНЁРЫ */}
       <div style={{ maxWidth: 960, margin: "0 auto", position: "relative", zIndex: 1, padding: "0 32px 100px" }}>
-        <p style={{ fontFamily: "monospace", fontSize: "0.78rem", letterSpacing: "0.18em", color: "#4f8fe0", marginBottom: 18 }}>
+        <p style={{ fontFamily: "monospace", fontSize: "0.78rem", letterSpacing: "0.18em", color: "#f0b429", marginBottom: 18 }}>
           {t("about.partnersEyebrow")}
         </p>
         <h3 style={gradHead(["#ffffff", "#8a8a8a"])}>{t("about.partnersTitle")}</h3>
         <p style={{ display: "flex", gap: 10, marginTop: 18, maxWidth: 620, color: "rgba(238,236,228,0.6)", lineHeight: 1.6, fontSize: "0.92rem" }}>
-          <span style={{ color: "#4f8fe0" }}>✦</span>
+          <span style={{ color: "#f0b429" }}>✦</span>
           {t("about.partnersIntro")}
         </p>
 
@@ -303,7 +303,7 @@ export default function About() {
           }}>
             <button onClick={() => setOpenDoc(null)} aria-label="close" style={{
               position: "absolute", top: -14, right: -14, width: 32, height: 32, borderRadius: "50%",
-              background: "#4f8fe0", border: "none", color: "#0d0f11", cursor: "pointer",
+              background: "#f0b429", border: "none", color: "#0d0f11", cursor: "pointer",
               display: "flex", alignItems: "center", justifyContent: "center"
             }}>
               <X size={18} />
@@ -316,10 +316,10 @@ export default function About() {
       <div style={{ position: "relative", zIndex: 1, padding: "0 32px 60px" }}>
         <span style={{
           fontFamily: "'Orbitron', sans-serif", fontWeight: 700, fontSize: "0.85rem",
-          letterSpacing: "0.1em", color: "#8fc0ff", transform: "skewX(-10deg)", display: "inline-block",
-          textShadow: "0 0 12px rgba(120,180,255,0.5)"
+          letterSpacing: "0.1em", color: "#ffd98a", transform: "skewX(-10deg)", display: "inline-block",
+          textShadow: "0 0 12px rgba(255,210,120,0.5)"
         }}>
-          UZTRANSFORMATOR
+          ITALYCRANE
         </span>
       </div>
     </div>

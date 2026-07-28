@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { API_BASE_URL } from "../config";
+import { login } from "../adminAuth";
 
 export default function AdminLogin({ onSuccess }) {
   const { t } = useLanguage();
@@ -14,16 +14,9 @@ export default function AdminLogin({ onSuccess }) {
     setError(false);
     setLoading(true);
     try {
-      const res = await fetch(`${API_BASE_URL}/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password: pass }),
-      });
-      if (!res.ok) throw new Error("wrong");
-      const data = await res.json();
-      localStorage.setItem("admin_token", data.access_token);
+      await login(username, pass);
       onSuccess();
-    } catch {
+    } catch (err) {
       setError(true);
     }
     setLoading(false);
@@ -39,10 +32,10 @@ export default function AdminLogin({ onSuccess }) {
         background: "#16191d", padding: 32, border: "1px solid rgba(238,236,228,0.15)"
       }}>
         <h2 style={{ fontFamily: "Georgia, serif", fontSize: "1.3rem", marginBottom: 8 }}>{t("admin.loginTitle")}</h2>
-        <input placeholder={t("admin.username")} value={username} onChange={(e) => setUsername(e.target.value)} required style={inputStyle} />
+        <input placeholder={t("admin.username")} type="text" value={username} onChange={(e) => setUsername(e.target.value)} required style={inputStyle} />
         <input placeholder={t("admin.password")} type="password" value={pass} onChange={(e) => setPass(e.target.value)} required style={inputStyle} />
         {error && <p style={{ color: "#e05a5a", fontSize: "0.85rem" }}>{t("admin.wrong")}</p>}
-        <button disabled={loading} style={{ padding: 12, background: "#4f8fe0", border: "none", color: "#0d0f11", fontWeight: 600, cursor: loading ? "default" : "pointer", opacity: loading ? 0.6 : 1 }}>
+        <button disabled={loading} style={{ padding: 12, background: "#f0b429", border: "none", color: "#0d0f11", fontWeight: 600, cursor: loading ? "default" : "pointer", opacity: loading ? 0.6 : 1 }}>
           {loading ? "…" : t("admin.enter")}
         </button>
       </form>

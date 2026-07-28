@@ -18,7 +18,7 @@ export default function ScrollProgress() {
     <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: 3, zIndex: 60, background: "transparent" }}>
       <div style={{
         height: "100%", width: `${progress}%`,
-        background: "linear-gradient(90deg, #7fb8f5, #2c6ab8)",
+        background: "linear-gradient(90deg, #ffd85c, #b8860b)",
         transition: "width 0.1s linear"
       }} />
     </div>

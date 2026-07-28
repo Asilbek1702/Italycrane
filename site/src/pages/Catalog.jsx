@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { ChevronsRight, PackageSearch } from "lucide-react";
-import BlueprintGrid from "../components/BlueprintGrid";
+import { PackageSearch } from "lucide-react";
+import CraneBlueprint from "../components/CraneBlueprint";
 import PdfModal from "../components/PdfModal";
 import Skeleton from "../components/Skeleton";
 import SuccessCheck from "../components/SuccessCheck";
 import { useLanguage } from "../context/LanguageContext";
 import { useProducts } from "../context/ProductsContext";
 import { useToast } from "../context/ToastContext";
-import { getCategory, optionLabel } from "../data/categories";
+import { CATEGORIES, getCategory, optionLabel } from "../data/categories";
 
 const QUOTE_EMAIL = "4b0bb1139cf12ba51b9816eb9ff90467";
 
@@ -15,13 +15,13 @@ export default function Catalog() {
   const { t, lang } = useLanguage();
   const { products, loading } = useProducts();
   const toast = useToast();
+  const [filter, setFilter] = useState("Все");
   const [selected, setSelected] = useState(null);
   const [pdfUrl, setPdfUrl] = useState(null);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
-  const [hoverBtn, setHoverBtn] = useState(null);
 
-  const shown = products;
+  const shown = filter === "Все" ? products : products.filter((p) => p.category === filter);
 
   async function submitQuote(e) {
     e.preventDefault();
@@ -52,7 +52,7 @@ export default function Catalog() {
 
   return (
     <div style={{ background: "#0d0f11", color: "#eeece4", padding: "90px 24px 60px", minHeight: "100vh", position: "relative", overflow: "hidden" }}>
-      <BlueprintGrid />
+      <CraneBlueprint />
 
       <style>{`
         @media (max-width: 640px) {
@@ -91,7 +91,7 @@ export default function Catalog() {
       `}</style>
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1000, margin: "0 auto" }}>
-        <p style={{ fontFamily: "monospace", fontSize: "0.78rem", letterSpacing: "0.18em", color: "#4f8fe0", marginBottom: 14 }}>
+        <p style={{ fontFamily: "monospace", fontSize: "0.78rem", letterSpacing: "0.18em", color: "#f0b429", marginBottom: 14 }}>
           {t("catalog.eyebrow")}
         </p>
         <h2 style={{
@@ -100,6 +100,17 @@ export default function Catalog() {
         }}>
           {t("catalog.title")}
         </h2>
+
+        <div style={{ display: "flex", gap: 10, marginBottom: 44, flexWrap: "wrap" }}>
+          <button onClick={() => setFilter("Все")} style={filterPill(filter === "Все")}>
+            {t("catalog.all")}
+          </button>
+          {CATEGORIES.map((c) => (
+            <button key={c.id} onClick={() => setFilter(c.id)} style={filterPill(filter === c.id)}>
+              {c.label[lang]}
+            </button>
+          ))}
+        </div>
 
         {loading && (
           <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
@@ -135,7 +146,6 @@ export default function Catalog() {
             {shown.map((p, idx) => {
               const cat = getCategory(p.category);
               const reversed = idx % 2 === 1;
-              const btnId = "req-" + p.id;
               const name = p[`name_${lang}`];
 
               return (
@@ -162,7 +172,7 @@ export default function Catalog() {
                   }}>
                     <div style={{
                       position: "absolute", width: "180px", height: "180px",
-                      background: "radial-gradient(circle, rgba(79, 143, 224, 0.1) 0%, rgba(0,0,0,0) 70%)",
+                      background: "radial-gradient(circle, rgba(240, 180, 41, 0.1) 0%, rgba(0,0,0,0) 70%)",
                       pointerEvents: "none"
                     }} />
                     <img src={p.image} alt={name} loading="lazy" decoding="async" style={{
@@ -202,27 +212,12 @@ export default function Catalog() {
                     <div className="catalog-actions" style={{ display: "flex", gap: 12, alignItems: "center" }}>
                       <button onClick={() => setSelected(p)} style={{
                         padding: "13px 24px",
-                        background: "linear-gradient(90deg, rgba(245,185,66,0.9) 0%, rgba(217,154,31,0.9) 100%)",
+                        background: "linear-gradient(90deg, rgba(247, 201, 72, 0.9) 0%, rgba(240, 180, 41, 0.9) 100%)",
                         border: "none", borderRadius: 8, color: "#0d0f11", cursor: "pointer",
                         fontSize: "0.9rem", fontWeight: 700,
-                        boxShadow: "0 4px 15px rgba(245,185,66,0.25)",
+                        boxShadow: "0 4px 15px rgba(240, 180, 41, 0.25)", transition: "all 0.2s ease"
                       }}>
                         {t("catalog.requestBtn")}
-                      </button>
-
-                      <button
-                        onClick={() => setSelected(p)}
-                        onMouseEnter={() => setHoverBtn(btnId)}
-                        onMouseLeave={() => setHoverBtn(null)}
-                        aria-label={t("catalog.requestBtn")}
-                        style={{
-                          width: 44, height: 44, borderRadius: "50%", border: "none", cursor: "pointer",
-                          background: hoverBtn === btnId ? "#6ba3ec" : "#4f8fe0",
-                          display: "flex", alignItems: "center", justifyContent: "center",
-                          boxShadow: "0 4px 15px rgba(79, 143, 224, 0.2)", transition: "all 0.2s ease"
-                        }}
-                      >
-                        <ChevronsRight size={18} color="#fff" />
                       </button>
 
                       {p.pdf && (
@@ -257,16 +252,20 @@ export default function Catalog() {
             {sent ? (
               <div style={{ textAlign: "center" }}>
                 <SuccessCheck />
-                <p style={{ color: "#4f8fe0", fontSize: "0.9rem", margin: "8px 0 0" }}>{t("quoteForm.sent")}</p>
+                <p style={{ color: "#f0b429", fontSize: "0.9rem", margin: "8px 0 0" }}>{t("quoteForm.sent")}</p>
               </div>
             ) : (
               <form onSubmit={submitQuote} style={{ display: "grid", gap: 10 }}>
                 <input name="name" placeholder={t("quoteForm.name")} required style={inputStyle} />
                 <input name="phone" placeholder={t("quoteForm.phone")} required style={inputStyle} />
                 <input name="email" placeholder={t("quoteForm.email")} type="email" style={inputStyle} />
-                <input type="hidden" name="category" value="CRANE" />
+                <select name="category" defaultValue={selected.category} style={inputStyle}>
+                  {CATEGORIES.map((c) => (
+                    <option key={c.id} value={c.id}>{c.label[lang]}</option>
+                  ))}
+                </select>
                 <textarea name="description" placeholder={t("quoteForm.description")} rows={3} style={inputStyle} />
-                <button disabled={sending} style={{ padding: 12, background: "#4f8fe0", border: "none", borderRadius: 8, color: "#0d0f11", fontWeight: 600, cursor: sending ? "default" : "pointer", opacity: sending ? 0.6 : 1 }}>
+                <button disabled={sending} style={{ padding: 12, background: "#f0b429", border: "none", borderRadius: 8, color: "#0d0f11", fontWeight: 600, cursor: sending ? "default" : "pointer", opacity: sending ? 0.6 : 1 }}>
                   {sending ? "…" : t("quoteForm.submit")}
                 </button>
                 <button type="button" onClick={() => setSelected(null)} style={{
@@ -280,5 +279,13 @@ export default function Catalog() {
     </div>
   );
 }
+
+const filterPill = (active) => ({
+  padding: "9px 18px", fontSize: "0.85rem", cursor: "pointer", borderRadius: 8,
+  border: "1px solid " + (active ? "transparent" : "rgba(238,236,228,0.25)"),
+  background: active ? "#f3d27a" : "transparent",
+  color: active ? "#0d0f11" : "#eeece4", fontWeight: active ? 600 : 400,
+  transition: "all 0.2s ease"
+});
 
 const inputStyle = { padding: 11, background: "#0d0f11", border: "1px solid rgba(238,236,228,0.2)", color: "#eeece4", fontFamily: "inherit", borderRadius: 8 };

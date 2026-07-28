@@ -17,8 +17,8 @@ export default function LanguageSwitcher() {
           onClick={() => setLang(l.id)}
           style={{
             background: "transparent",
-            border: "1px solid " + (lang === l.id ? "#f5b942" : "rgba(238,236,228,0.25)"),
-            color: lang === l.id ? "#f5b942" : "#eeece4",
+            border: "1px solid " + (lang === l.id ? "#f0b429" : "rgba(238,236,228,0.25)"),
+            color: lang === l.id ? "#f0b429" : "#eeece4",
             fontSize: "0.9rem", padding: "8px 13px", cursor: "pointer", borderRadius: 5
           }}
         >

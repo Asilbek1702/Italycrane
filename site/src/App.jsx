@@ -4,6 +4,7 @@ import { ProductsProvider } from "./context/ProductsContext";
 import { ToastProvider } from "./context/ToastContext";
 import Intro from "./components/Intro";
 import Navigation from "./components/Navigation";
+import { isAuthed, logout } from "./adminAuth";
 import FloatingContacts from "./components/FloatingContacts";
 import ErrorBoundary from "./components/ErrorBoundary";
 import BackToTop from "./components/BackToTop";
@@ -14,6 +15,8 @@ import About from "./pages/About";
 import Contacts from "./pages/Contacts";
 import NotFound from "./pages/NotFound";
 
+// Код админки грузится отдельным чанком, только когда реально открыли /admin —
+// обычные посетители сайта его не скачивают.
 const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 const AdminPanel = lazy(() => import("./pages/AdminPanel"));
 
@@ -42,7 +45,7 @@ function Site() {
 }
 
 function Admin() {
-  const [authed, setAuthed] = useState(!!localStorage.getItem("admin_token"));
+  const [authed, setAuthed] = useState(() => isAuthed());
 
   if (!authed) return (
     <Suspense fallback={null}>
@@ -53,7 +56,7 @@ function Admin() {
     <Suspense fallback={null}>
       <AdminPanel
         onLogout={() => {
-          localStorage.removeItem("admin_token");
+          logout();
           setAuthed(false);
         }}
       />
@@ -88,7 +91,7 @@ export default function App() {
                 html, body { margin: 0; padding: 0; overflow-x: hidden; }
                 #root { overflow-x: hidden; }
                 *:focus-visible {
-                  outline: 2px solid #4f8fe0;
+                  outline: 2px solid #f0b429;
                   outline-offset: 2px;
                 }
               `}</style>

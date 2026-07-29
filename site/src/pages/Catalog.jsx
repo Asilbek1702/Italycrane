@@ -15,13 +15,12 @@ export default function Catalog() {
   const { t, lang } = useLanguage();
   const { products, loading } = useProducts();
   const toast = useToast();
-  const [filter, setFilter] = useState("Все");
   const [selected, setSelected] = useState(null);
   const [pdfUrl, setPdfUrl] = useState(null);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
 
-  const shown = filter === "Все" ? products : products.filter((p) => p.category === filter);
+  const shown = products;
 
   async function submitQuote(e) {
     e.preventDefault();
@@ -100,17 +99,6 @@ export default function Catalog() {
         }}>
           {t("catalog.title")}
         </h2>
-
-        <div style={{ display: "flex", gap: 10, marginBottom: 44, flexWrap: "wrap" }}>
-          <button onClick={() => setFilter("Все")} style={filterPill(filter === "Все")}>
-            {t("catalog.all")}
-          </button>
-          {CATEGORIES.map((c) => (
-            <button key={c.id} onClick={() => setFilter(c.id)} style={filterPill(filter === c.id)}>
-              {c.label[lang]}
-            </button>
-          ))}
-        </div>
 
         {loading && (
           <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
@@ -279,13 +267,5 @@ export default function Catalog() {
     </div>
   );
 }
-
-const filterPill = (active) => ({
-  padding: "9px 18px", fontSize: "0.85rem", cursor: "pointer", borderRadius: 8,
-  border: "1px solid " + (active ? "transparent" : "rgba(238,236,228,0.25)"),
-  background: active ? "#f3d27a" : "transparent",
-  color: active ? "#0d0f11" : "#eeece4", fontWeight: active ? 600 : 400,
-  transition: "all 0.2s ease"
-});
 
 const inputStyle = { padding: 11, background: "#0d0f11", border: "1px solid rgba(238,236,228,0.2)", color: "#eeece4", fontFamily: "inherit", borderRadius: 8 };

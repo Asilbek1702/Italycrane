@@ -3,8 +3,6 @@ export const CATEGORIES = [
     id: "CRANE",
     label: { ru: "Краны", uz: "Kranlar", en: "Cranes" },
     fields: [
-      { key: "craneName", type: "text",
-        label: { ru: "Название крана", uz: "Kran nomi", en: "Crane name" } },
       { key: "capacity", type: "text",
         label: { ru: "Грузоподъёмность", uz: "Ko'tarish quvvati", en: "Load capacity" } },
       { key: "span", type: "text",

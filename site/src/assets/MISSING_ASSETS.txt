@@ -1,0 +1,11 @@
+Оригинальные картинки (краны, чертёж, партнёры, сертификаты, логотипы)
+не входили в переданные текстовые файлы — это бинарные .png/.jpg.
+
+Нужны для полной сборки:
+- assets/cranes/crane1.png, crane2.png, crane3.png, blueprint.png
+- assets/card-bg1.png ... card-bg4.png
+- assets/partners/*.png (sqb, minenergo, toshkent_t, ngmk, agmk, enter_eng, uzbekneftegaz, tu_shield, bektemir, hududiy)
+- assets/certs/cert_license.jpg, cert_1.jpg, cert_2.jpg
+
+Для дизайн-агента (Kimi/Replit) можно временно заменить на placeholder-изображения
+или попросить сгенерировать новые в том же тёмном/золотом стиле.

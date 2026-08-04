@@ -1,27 +1,27 @@
 import { useLanguage } from "../context/LanguageContext";
 import CraneBlueprint from "../components/CraneBlueprint";
+import AnimatedButton from "../components/AnimatedButton";
+import { colors, fonts } from "../theme";
 
 export default function NotFound() {
   const { t } = useLanguage();
   return (
     <div style={{
-      minHeight: "100vh", background: "#0d0f11", color: "#eeece4", position: "relative",
+      minHeight: "100vh", background: colors.bg, color: colors.textPrimary, position: "relative",
       display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden"
     }}>
       <CraneBlueprint />
-      <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: 24 }}>
+      <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: 24, animation: "fadeUp 0.5s ease both" }}>
         <div style={{
-          fontFamily: "'Oswald', sans-serif", fontWeight: 700, fontSize: "clamp(4rem, 14vw, 8rem)",
-          lineHeight: 1, backgroundImage: "linear-gradient(180deg, #ffd85c 0%, #b8860b 100%)",
-          WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent"
+          fontFamily: fonts.display, fontWeight: 700, fontSize: "clamp(4rem, 14vw, 8rem)",
+          lineHeight: 1, color: colors.accent
         }}>404</div>
-        <p style={{ fontSize: "1.05rem", color: "rgba(238,236,228,0.7)", margin: "16px 0 32px" }}>
+        <p style={{ fontSize: "1.05rem", color: colors.textSecondary, margin: "16px 0 32px" }}>
           {t("notFound.text")}
         </p>
-        <a href="/" style={{
-          display: "inline-block", padding: "14px 28px", borderRadius: 10,
-          background: "#f0b429", color: "#0d0f11", fontWeight: 600, textDecoration: "none"
-        }}>{t("notFound.backHome")}</a>
+        <a href="/" style={{ textDecoration: "none" }}>
+          <AnimatedButton variant="light" size="lg">{t("notFound.backHome")}</AnimatedButton>
+        </a>
       </div>
     </div>
   );

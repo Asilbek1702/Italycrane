@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { colors, zIndex } from "../theme";
 
 export default function ScrollProgress() {
   const [progress, setProgress] = useState(0);
@@ -15,10 +16,10 @@ export default function ScrollProgress() {
   }, []);
 
   return (
-    <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: 3, zIndex: 60, background: "transparent" }}>
+    <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: 3, zIndex: zIndex.sticky, background: colors.surfaceStrong }}>
       <div style={{
         height: "100%", width: `${progress}%`,
-        background: "linear-gradient(90deg, #ffd85c, #b8860b)",
+        background: colors.accent,
         transition: "width 0.1s linear"
       }} />
     </div>

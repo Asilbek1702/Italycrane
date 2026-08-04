@@ -1,46 +1,56 @@
 import { useState } from "react";
+import { colors, radius, transitions } from "../theme";
 
-export default function AnimatedButton({ children, onClick, variant = "light", style = {} }) {
+export default function AnimatedButton({ children, onClick, variant = "primary", size = "md", disabled = false, loading = false, style = {}, ...props }) {
+  const [pressed, setPressed] = useState(false);
   const [hover, setHover] = useState(false);
 
-  const base = {
-    border: "none", borderRadius: 12, fontSize: "0.95rem", fontWeight: 600,
-    padding: "16px 26px", display: "flex", alignItems: "center", gap: 10,
-    cursor: "pointer", transition: "transform 0.2s ease, box-shadow 0.2s ease",
-    transform: hover ? "translateY(-3px)" : "translateY(0)",
+  const sizeStyles = {
+    sm: { padding: '8px 14px', fontSize: '12px' },
+    md: { padding: '14px 24px', fontSize: '14px' },
+    lg: { padding: '16px 28px', fontSize: '16px' },
   };
 
-  const variants = {
+  const variantStyles = {
+    primary: { background: colors.accent, color: colors.bg, border: 'none' },
     light: {
-      background: "linear-gradient(180deg, #f7f6f2 0%, #e3d6a3 100%)",
-      color: "#0d0f11",
-      boxShadow: hover
-        ? "0 10px 28px rgba(230,180,60,0.45)"
-        : "0 4px 20px rgba(230,180,60,0.25)",
+      background: hover ? colors.accentHover : colors.accent,
+      color: colors.bg,
+      border: 'none',
+      boxShadow: hover ? '0 10px 28px rgba(240,180,41,0.45)' : '0 4px 20px rgba(240,180,41,0.25)',
     },
-    blue: {
-      background: hover
-        ? "linear-gradient(180deg, #f7c948 0%, #c9960b 100%)"
-        : "linear-gradient(180deg, #f0b429 0%, #b8860b 100%)",
-      color: "#0d0f11",
-      boxShadow: hover
-        ? "0 10px 28px rgba(240,180,41,0.55)"
-        : "0 4px 18px rgba(240,180,41,0.35)",
-    },
-    outline: {
-      background: hover ? "rgba(240,180,41,0.12)" : "transparent",
-      color: "#f0b429",
-      border: "1px solid #f0b429",
-    },
+    secondary: { background: 'transparent', color: colors.textPrimary, border: `1px solid ${colors.border}` },
+    outline: { background: hover ? colors.accentMuted : 'transparent', color: colors.accent, border: `1px solid ${colors.accent}` },
+    ghost: { background: 'transparent', color: colors.textSecondary, border: 'none' },
+    danger: { background: colors.dangerMuted, color: colors.danger, border: `1px solid ${colors.danger}` },
+  };
+
+  const btnStyle = {
+    display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+    borderRadius: radius.md, fontWeight: 600, fontFamily: 'inherit',
+    cursor: disabled || loading ? 'not-allowed' : 'pointer',
+    opacity: disabled ? 0.5 : 1,
+    transform: pressed ? 'scale(0.97)' : hover ? 'translateY(-3px)' : 'translateY(0) scale(1)',
+    transition: `transform ${transitions.fast}, opacity ${transitions.fast}, background ${transitions.fast}, box-shadow ${transitions.fast}`,
+    ...sizeStyles[size],
+    ...variantStyles[variant],
+    ...style,
   };
 
   return (
     <button
+      style={btnStyle}
+      disabled={disabled || loading}
       onClick={onClick}
       onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      style={{ ...base, ...variants[variant], ...style }}
+      onMouseLeave={() => { setHover(false); setPressed(false); }}
+      onMouseDown={() => setPressed(true)}
+      onMouseUp={() => setPressed(false)}
+      {...props}
     >
+      {loading && (
+        <span style={{ display: 'inline-block', width: 14, height: 14, border: `2px solid ${colors.bg}`, borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+      )}
       {children}
     </button>
   );

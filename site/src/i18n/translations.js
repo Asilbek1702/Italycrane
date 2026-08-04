@@ -2,10 +2,10 @@ export const translations = {
   ru: {
     nav: { home: "Главная", catalog: "Каталог", about: "О компании", contacts: "Контакты" },
     home: {
-      "headingLine1": "НАДЕЖНАЯ ЭНЕРГИЯ.",
-      "headingLine2": "СИЛЬНОЕ БУДУЩЕЕ.",
-      subtitle: "Передовые решения в области энергетики и электротехники для отраслей, которые двигают мир вперед",
-      catalogBtn: "Каталог продукции",
+      "headingLine1": "ГРУЗОПОДЪЁМНЫЕ КРАНЫ",
+      "headingLine2": "ДЛЯ ЛЮБЫХ ОБЪЕКТОВ ТАШКЕНТА",
+      subtitle: "Продажа, монтаж и обслуживание мостовых, козловых и мобильных кранов. Инженерный подбор грузоподъёмности под ваш объект.",
+      catalogBtn: "Каталог кранов",
       aboutBtn: "О компании",
     },
     catalog: {
@@ -119,10 +119,10 @@ export const translations = {
   uz: {
     nav: { home: "Bosh sahifa", catalog: "Katalog", about: "Kompaniya haqida", contacts: "Kontaktlar" },
     home: {
-      "headingLine1": "ISHONCHLI ENERGIYA.",
-      "headingLine2": "KUCHLI KELAJAK.",
-      subtitle: "Dunyoni oldinga siljitadigan sanoat tarmoqlari uchun ilg'or energetika va elektrotexnika yechimlari",
-      catalogBtn: "Mahsulotlar katalogi",
+      "headingLine1": "TOSHKENTDAGI OBYEKTLAR",
+      "headingLine2": "UCHUN YUK KO'TARISH KRANLARI",
+      subtitle: "Ko'prikli, kozlovoy va mobil kranlarni sotish, montaj qilish va texnik xizmat ko'rsatish. Obyektingiz uchun ko'tarish quvvatini hisoblaymiz.",
+      catalogBtn: "Kranlar katalogi",
       aboutBtn: "Kompaniya haqida",
     },
     catalog: {
@@ -236,10 +236,10 @@ export const translations = {
   en: {
     nav: { home: "Home", catalog: "Catalog", about: "About", contacts: "Contacts" },
     home: {
-      "headingLine1": "RELIABLE ENERGY.",
-      "headingLine2": "STRONG FUTURE.",
-      subtitle: "Advanced energy and electrical engineering solutions for industries that move the world forward",
-      catalogBtn: "Product catalog",
+      "headingLine1": "LIFTING CRANES",
+      "headingLine2": "FOR EVERY TASHKENT SITE",
+      subtitle: "Sale, installation and maintenance of overhead, gantry and mobile cranes. Engineering-based capacity selection for your site.",
+      catalogBtn: "Crane catalog",
       aboutBtn: "About us",
     },
     catalog: {

@@ -41,7 +41,7 @@ export default function Home({ setPage }) {
             </span>
           </h1>
 
-          <p style={{ marginTop: 24, color: colors.textSecondary, lineHeight: 1.7, maxWidth: 500 }}>
+          <p style={{ marginTop: 24, color: "#d7e2ee", lineHeight: 1.7, maxWidth: 500, fontSize: "1.02rem" }}>
             {t("home.subtitle")}
           </p>
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PackageSearch } from "lucide-react";
-import CraneBlueprint from "../components/CraneBlueprint";
+import AmbientGlow from "../components/AmbientGlow";
 import PdfModal from "../components/PdfModal";
 import Skeleton from "../components/Skeleton";
 import SuccessCheck from "../components/SuccessCheck";
@@ -54,7 +54,7 @@ export default function Catalog() {
 
   return (
     <div style={{ background: colors.bg, color: colors.textPrimary, padding: "90px 24px 60px", minHeight: "100vh", position: "relative", overflow: "hidden" }}>
-      <CraneBlueprint />
+      <AmbientGlow />
 
       <style>{`
         @media (max-width: 640px) {

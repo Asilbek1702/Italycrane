@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ShieldCheck, Wrench, Truck, Clock, BadgeCheck, X } from "lucide-react";
-import CraneBlueprint from "../components/CraneBlueprint";
+import IndustrialBackground from "../components/IndustrialBackground";
 import { useLanguage } from "../context/LanguageContext";
 
 // Импортируем ваши загруженные картинки из папки assets
@@ -66,7 +66,7 @@ export default function About() {
 
   return (
     <div style={{ background: "#0a0c0e", color: "#eeece4", position: "relative", overflow: "hidden" }}>
-      <CraneBlueprint />
+      <IndustrialBackground />
 
       {/* СЕКЦИЯ 1: О КОМПАНИИ */}
       <div style={{ maxWidth: 960, margin: "0 auto", position: "relative", zIndex: 1, padding: "clamp(70px,12vw,110px) 20px 30px" }}>

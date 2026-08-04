@@ -1,5 +1,5 @@
 import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react";
-import CraneBlueprint from "../components/CraneBlueprint";
+import DarkMapBackground from "../components/DarkMapBackground";
 import { InstagramIcon, LinkedinIcon, FacebookIcon } from "../components/icons";
 import { useLanguage } from "../context/LanguageContext";
 import { useState } from "react";
@@ -83,7 +83,7 @@ export default function Contacts() {
 
   return (
     <div style={{ background: "#060709", color: "#eeece4", minHeight: "100vh", position: "relative", overflow: "hidden" }}>
-      <CraneBlueprint />
+      <DarkMapBackground />
 
       <style>{`
         input::placeholder {

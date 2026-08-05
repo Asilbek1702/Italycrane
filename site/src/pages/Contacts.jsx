@@ -302,7 +302,7 @@ export default function Contacts() {
           </div>
         </div>
 
-        <div style={{ marginTop: 40 }}>
+        {/* <div style={{ marginTop: 40 }}>
           <div style={{
             width: "100%",
             height: 340,
@@ -327,7 +327,7 @@ export default function Contacts() {
           }}>
             <MapPin size={14} /> {ADDRESS_LINE1}, {ADDRESS_LINE2}
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   );
